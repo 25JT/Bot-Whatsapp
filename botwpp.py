@@ -1,21 +1,24 @@
-import pyautogui
-import webbrowser
+import pywhatkit as kit
 from time import sleep
 
-def enviar_mensajes(telefonos, mensaje, repeticiones=1):
+def enviar_mensajes(telefonos, mensaje):
     for telefono in telefonos:
-        url = f'https://web.whatsapp.com/send?phone={telefono}'
-        webbrowser.open(url)
-        sleep(10)  # Espera a que se cargue la página de WhatsApp Web
+        # Envía el mensaje inmediatamente
+        kit.sendwhatmsg_instantly(telefono, mensaje)
         
-        for _ in range(repeticiones):
-            pyautogui.typewrite(mensaje)
-            pyautogui.press('enter')
-        
-        sleep(5)  # Espera un poco antes de cerrar la pestaña
-        pyautogui.hotkey('ctrl', 'w')  # Cierra la pestaña actual
+        # Espera un momento después de enviar el mensaje para evitar problemas de sincronización
+        sleep(10)
 
-telefonos = ['Number1', 'Number2','....']
-mensaje = "TEXT  HERE"
+telefonos = ['+xxxxx']
+mensaje = (
+    "HOLA COMO ESTAS 🖐️\n"
+    "El dia de hoy quiero invitarte a mejorar tus ingresos con YANBAL🤑\n"
+    "🤑Escala de ganancia del 25% al 35%\n"
+    "🤑Premios por ser nueva\n"
+    "🤑Premios por pasar pedido\n"
+    "Entregamos a cliente final a nivel nacional\n"
+    "Monto mínimo $220.000\n"
+    "Escríbeme aquí y te enseñaré"
+)
 
-enviar_mensajes(telefonos, mensaje, repeticiones=1)
+enviar_mensajes(telefonos, mensaje)
